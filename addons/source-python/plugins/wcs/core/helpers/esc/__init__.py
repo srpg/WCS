@@ -41,7 +41,7 @@ if GAME_NAME == 'cstrike':
     _mp_disable_autokick = get_server_command('mp_disable_autokick')
 
 for x in (ITEM_PATH_ES, MODULE_PATH_ES, RACE_PATH_ES):
-    if not x.isdir():
+    if not x.is_dir():
         x.makedirs()
 
 

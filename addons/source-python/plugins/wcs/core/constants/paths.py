@@ -68,6 +68,6 @@ for _name in __all__:
         _path = globals()[_name]
 
         # Does the directory not exist?
-        if not _path.isdir():
+        if not _path.is_dir():
             # Create it
             _path.makedirs()

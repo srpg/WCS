@@ -146,7 +146,7 @@ OVERLAY_BUDDHA_MODE = 0x02000000
 # ============================================================================
 # >> GLOBAL VARIABLES
 # ============================================================================
-if (CFG_PATH / 'privileges.json').isfile():
+if (CFG_PATH / 'privileges.json').is_file():
     with open(CFG_PATH / 'privileges.json') as inputfile:
         try:
             data = json_load(inputfile)

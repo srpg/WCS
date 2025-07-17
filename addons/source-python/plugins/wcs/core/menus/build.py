@@ -852,7 +852,7 @@ def wcsadmin_players_sub_bank_levels_menu_build(menu, client):
 
 @wcsadmin_management_races_menu.register_build_callback
 def wcsadmin_management_races_menu_build(menu, client):
-    if (CFG_PATH / 'races.json').isfile():
+    if (CFG_PATH / 'races.json').is_file():
         with open(CFG_PATH / 'races.json') as inputfile:
             current_races = load(inputfile).get('races', [])
     else:
@@ -870,7 +870,7 @@ def wcsadmin_management_races_menu_build(menu, client):
 
 @wcsadmin_management_items_menu.register_build_callback
 def wcsadmin_management_items_menu_build(menu, client):
-    if (CFG_PATH / 'items.json').isfile():
+    if (CFG_PATH / 'items.json').is_file():
         with open(CFG_PATH / 'items.json') as inputfile:
             current_items = load(inputfile).get('items', [])
     else:
@@ -888,7 +888,7 @@ def wcsadmin_management_items_menu_build(menu, client):
 
 @wcsadmin_management_races_add_menu.register_build_callback
 def wcsadmin_management_races_add_menu_build(menu, client):
-    if (CFG_PATH / 'races.json').isfile():
+    if (CFG_PATH / 'races.json').is_file():
         with open(CFG_PATH / 'races.json') as inputfile:
             current_races = load(inputfile).get('races', [])
     else:
@@ -904,7 +904,7 @@ def wcsadmin_management_races_add_menu_build(menu, client):
 
 @wcsadmin_management_items_add_menu.register_build_callback
 def wcsadmin_management_items_add_menu_build(menu, client):
-    if (CFG_PATH / 'items.json').isfile():
+    if (CFG_PATH / 'items.json').is_file():
         with open(CFG_PATH / 'items.json') as inputfile:
             current_items = load(inputfile).get('items', [])
     else:

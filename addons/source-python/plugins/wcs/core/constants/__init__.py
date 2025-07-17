@@ -141,7 +141,7 @@ except ImportError:
 
     warn('IS_ESC_SUPPORT_ENABLED was set to True but EventScripts was not found')
 
-if (CFG_PATH / 'github.json').isfile():
+if (CFG_PATH / 'github.json').is_file():
     with open(CFG_PATH / 'github.json') as inputfile:
         data = load(inputfile)
 
@@ -176,7 +176,7 @@ else:
     COLOR_LIGHTGREEN = '\3'
     COLOR_DARKGREEN = '\5'
 
-if not (CFG_PATH / 'commands.json').isfile():
+if not (CFG_PATH / 'commands.json').is_file():
     with open(CFG_PATH / 'commands.json', 'w') as outputfile:
         dump({
             'wcs':['wcs', 'wcsmenu'],

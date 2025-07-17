@@ -43,7 +43,7 @@ __all__ = (
 # ============================================================================
 _path = CFG_PATH.joinpath('database.json')
 
-if _path.isfile():
+if _path.is_file():
     with open(_path) as inputfile:
         _database = json_load(inputfile)
 else:

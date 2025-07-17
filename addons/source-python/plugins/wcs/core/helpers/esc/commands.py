@@ -136,7 +136,7 @@ from ...players.entity import Player as WCSPlayer
 # ============================================================================
 _aliases = {}
 
-if (TRANSLATION_PATH / 'strings.ini').isfile():
+if (TRANSLATION_PATH / 'strings.ini').is_file():
     try:
         _strings = LangStrings(TRANSLATION_PATH / 'strings')
     except:

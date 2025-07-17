@@ -105,7 +105,7 @@ class _LanguageString(str):
 def parse_ini_races():
     races = OrderedDict()
 
-    if (CFG_PATH / 'races.ini').isfile():
+    if (CFG_PATH / 'races.ini').is_file():
         imported = ConfigObj(CFG_PATH / 'races.ini')
 
         no_category = []
@@ -291,7 +291,7 @@ def parse_ini_races():
 def parse_ini_items():
     items = OrderedDict()
 
-    if (CFG_PATH / 'items.ini').isfile():
+    if (CFG_PATH / 'items.ini').is_file():
         imported = ConfigObj(CFG_PATH / 'items.ini')
 
         for category in imported:
@@ -344,7 +344,7 @@ def parse_ini_items():
 def parse_key_races():
     races = OrderedDict()
 
-    if (CFG_PATH / 'es_WCSraces_db.txt').isfile():
+    if (CFG_PATH / 'es_WCSraces_db.txt').is_file():
         def _get_string(text):
             if text.startswith('wcs_lng_r_'):
                 if _languages:
@@ -449,7 +449,7 @@ def parse_key_races():
 def parse_key_items():
     items = OrderedDict()
 
-    if (CFG_PATH / 'es_WCSshop_db.txt').isfile():
+    if (CFG_PATH / 'es_WCSshop_db.txt').is_file():
         def _get_string(text):
             if text.startswith('wcs_lng_s_'):
                 if _languages:
@@ -462,7 +462,7 @@ def parse_key_items():
         if not _languages:
             warn(f'Unable to find the "es_WCSlanguage_db" file.')
 
-        if (CFG_PATH / 'es_WCSshop_cat_db.txt').isfile():
+        if (CFG_PATH / 'es_WCSshop_cat_db.txt').is_file():
             categories = KeyValues.load_from_file(CFG_PATH / 'es_WCSshop_cat_db.txt').as_dict()
         else:
             warn(f'Unable to find the "es_WCSshop_cat_db" file.')

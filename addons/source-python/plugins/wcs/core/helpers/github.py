@@ -171,7 +171,7 @@ class _GithubManager(dict):
             github = self._connect()
             repo = github.get_repo(f'{info.author.replace(" ", "")}/WCS')
 
-            if (DATA_PATH / 'metadata.wcs_install').isfile():
+            if (DATA_PATH / 'metadata.wcs_install').is_file():
                 valid_version = True
 
                 # Update the metadata file to use JSON instead of just holding the SHA value
@@ -185,7 +185,7 @@ class _GithubManager(dict):
                     with open(DATA_PATH / 'metadata.wcs_install', 'w') as outputfile:
                         dump({'sha':sha}, outputfile, indent=4)
             else:
-                if (PLUGIN_PATH / 'info.ini').isfile():
+                if (PLUGIN_PATH / 'info.ini').is_file():
                     with open(PLUGIN_PATH / 'info.ini') as inputfile:
                         for line in inputfile.read().splitlines():
                             if line.startswith('version'):
@@ -286,13 +286,13 @@ class _GithubManager(dict):
             github = self._connect()
             repo = github.get_repo(f'{info.author.replace(" ", "")}/WCS')
 
-            if (DATA_PATH / 'update_blacklist.txt').isfile():
+            if (DATA_PATH / 'update_blacklist.txt').is_file():
                 with open(DATA_PATH / 'update_blacklist.txt') as inputfile:
                     blacklist = inputfile.read().splitlines()
             else:
                 blacklist = []
 
-            if (DATA_PATH / 'metadata.wcs_install').isfile():
+            if (DATA_PATH / 'metadata.wcs_install').is_file():
                 try:
                     with open(DATA_PATH / 'metadata.wcs_install') as inputfile:
                         metadata = load(inputfile)
@@ -452,7 +452,7 @@ class _GithubManager(dict):
                     wcs_install_path_old = path / name / '.wcs_install'
                     wcs_install_path = path / name / 'metadata.wcs_install'
 
-                    if wcs_install_path_old.isfile():
+                    if wcs_install_path_old.is_file():
                         with open(wcs_install_path_old) as inputfile:
                             repository_installed = inputfile.read()
 
@@ -461,7 +461,7 @@ class _GithubManager(dict):
 
                         wcs_install_path_old.remove()
 
-                    if wcs_install_path.isfile():
+                    if wcs_install_path.is_file():
                         status = GithubModuleStatus.INSTALLED
 
                         with open(wcs_install_path) as inputfile:
@@ -538,12 +538,12 @@ class _GithubManager(dict):
             config_path = path / 'config.json'
             config_tmp_path = path / 'config.tmp.json'
 
-            if config_path.isfile():
+            if config_path.is_file():
                 config_path.rename(config_tmp_path)
 
             self._download_module(repo, f'{module}/{name}')
 
-            if config_tmp_path.isfile():
+            if config_tmp_path.is_file():
                 with open(config_tmp_path) as inputfile:
                     old_data = load(inputfile)
 
@@ -595,7 +595,7 @@ class _GithubManager(dict):
 
     def _uninstall_module(self, repository, module, name, userid):
         try:
-            if (MODULE_PATH_ES / module / name).isdir():
+            if (MODULE_PATH_ES / module / name).is_dir():
                 (MODULE_PATH_ES / module / name).rmtree()
 
             (MODULE_PATH / module / name).rmtree()
@@ -620,12 +620,12 @@ class _GithubManager(dict):
                 path = MODULE_PATH / content.path
 
             if content.type == 'dir':
-                if not path.isdir():
+                if not path.is_dir():
                     path.makedirs()
 
                 self._download_module(repo, content.path)
             else:
-                if not path.parent.isdir():
+                if not path.parent.is_dir():
                     path.parent.makedirs()
 
                 with open(path, 'wb') as outputfile:

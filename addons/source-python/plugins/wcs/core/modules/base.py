@@ -120,7 +120,7 @@ class _BaseManager(dict):
                     setting.add_to_category(category)
 
     def _get_or_create_config(self):
-        if (CFG_PATH / f'{self._module_name}.json').isfile():
+        if (CFG_PATH / f'{self._module_name}.json').is_file():
             with open(CFG_PATH / f'{self._module_name}.json') as inputfile:
                 config = json_load(inputfile)
 
@@ -134,9 +134,10 @@ class _BaseManager(dict):
             if self._module_name == 'items':
                 config['maxitems'] = {}
 
-            for name in set(x.name for x in (self._path.listdir() + (self._es_path.listdir() if IS_ESC_SUPPORT_ENABLED else []))):
+            for name in set(x.name for x in (list(self._path.iterdir()) + list(self._es_path.iterdir()) if IS_ESC_SUPPORT_ENABLED else list(self._path.iterdir()))):
                 if self._is_valid_config_files(name):
                     config[self._module_name].append(name)
+
 
             with open(CFG_PATH / f'{self._module_name}.json', 'w') as outputfile:
                 json_dump(config, outputfile, indent=4)
@@ -149,25 +150,25 @@ class _BaseManager(dict):
                 name = directory.name
                 new_path = self._es_path / name
 
-                if (directory / f'{name}.py').isfile():
+                if (directory / f'{name}.py').is_file():
                     new_path.makedirs_p()
                     (directory / f'{name}.py').move(new_path / f'{name}.py')
 
-                if (directory / f'es_{name}.txt').isfile():
+                if (directory / f'es_{name}.txt').is_file():
                     new_path.makedirs_p()
                     (directory / f'es_{name}.txt').move(new_path / f'es_{name}.txt')
 
     def _get_value_module_type(self, name):
-        if (self._path / name / '__init__.py').isfile():
+        if (self._path / name / '__init__.py').is_file():
             return ModuleType.SP
 
         if IS_ESC_SUPPORT_ENABLED:
             path_es = self._es_path / name
 
-            if (path_es / f'{name}.py').isfile():
+            if (path_es / f'{name}.py').is_file():
                 return ModuleType.ESP
 
-            if (path_es / f'es_{name}.txt').isfile():
+            if (path_es / f'es_{name}.txt').is_file():
                 return ModuleType.ESS
 
         return None
@@ -178,7 +179,7 @@ class _BaseManager(dict):
     def _is_valid_config_files(self, name):
         path = self._path / name
 
-        return (path / 'config.json').isfile() and (path / 'strings.ini').isfile()
+        return (path / 'config.json').is_file() and (path / 'strings.ini').is_file()
 
     def load(self, name):
         assert name not in self, name
