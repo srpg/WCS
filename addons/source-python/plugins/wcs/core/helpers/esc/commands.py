@@ -154,7 +154,7 @@ else:
 _esc_strings = {}
 _esc_strings_ids = {}
 
-if (TRANSLATION_PATH / 'esc').isdir():
+if (TRANSLATION_PATH / 'esc').is_dir():
     for name in [x.basename().rsplit('.', 1)[0] for x in (TRANSLATION_PATH / 'esc').listdir() if x.endswith('.ini') and not x.endswith('_server.ini')]:
         shortname = name.rsplit('_', 1)[0]
 
@@ -174,7 +174,7 @@ _restrictions = WeaponRestrictionHandler()
 _all_weapons = set([x.basename for x in WeaponClassIter('all', None if GAME_NAME in ('hl2mp', ) else 'objective')])
 _all_weapons_but_melee = set([x.basename for x in WeaponClassIter('all', 'melee' if GAME_NAME in ('hl2mp', ) else ['melee', 'objective'])])
 
-if (CFG_PATH / 'es_WCSlanguage_db.txt').isfile():
+if (CFG_PATH / 'es_WCSlanguage_db.txt').is_file():
     _languages = KeyValues.load_from_file(CFG_PATH / 'es_WCSlanguage_db.txt').as_dict()
 else:
     _languages = {}

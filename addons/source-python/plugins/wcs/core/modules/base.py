@@ -146,7 +146,7 @@ class _BaseManager(dict):
 
     def _move_misplaced_files(self):
         if IS_ESC_SUPPORT_ENABLED:
-            for directory in self._path.listdir():
+            for directory in self._path.iterdir():
                 name = directory.name
                 new_path = self._es_path / name
 

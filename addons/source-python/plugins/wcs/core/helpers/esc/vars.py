@@ -44,7 +44,7 @@ for variable in ('ex', 'vector1', 'vector2', 'wcs_x', 'wcs_y', 'wcs_z', 'wcs_x1'
                  'wcs_ok', 'wcs_wall'):
     cvars[variable] = ConVar(variable, '0')
 
-if (CFG_PATH / 'var.txt').isfile():
+if (CFG_PATH / 'var.txt').is_file():
     with open(CFG_PATH / 'var.txt') as inputfile:
         for variable in [x.strip() for x in inputfile.readlines() if not x.startswith('//') and x.strip()]:
             if variable not in cvars:
