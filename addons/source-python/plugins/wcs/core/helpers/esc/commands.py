@@ -155,7 +155,7 @@ _esc_strings = {}
 _esc_strings_ids = {}
 
 if (TRANSLATION_PATH / 'esc').is_dir():
-    for name in [x.stem for x in (TRANSLATION_PATH / 'esc').iterdir() if x.suffix == '.ini' and not x.name.endswith('_server.ini')]:
+    for name in [x.stem.rsplit('.', 1)[0] for x in (TRANSLATION_PATH / 'esc').iterdir() if x.suffix == '.ini' and not x.name.endswith('_server.ini')]:
         shortname = name.rsplit('_', 1)[0]
 
         try:
